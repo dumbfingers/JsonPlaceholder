@@ -8,7 +8,7 @@ class WebService {
   Future<List<PostDto>> fetchPosts() async {
     final response = await http.get(url);
     if (response.statusCode == 200) {
-      final Iterable body = jsonDecode(response);
+      final Iterable body = jsonDecode(response.body);
       return body.map((e) => PostDto.fromJson(e)).toList();
     } else {
       throw Exception("Unable to perform request");
